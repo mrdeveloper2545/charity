@@ -1,0 +1,154 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/all.min.css' %}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <!-- Bootstrap 5 CSS (ensure it's included before any Popper.js or Bootstrap.js) -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <!-- intl-tel-input CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.min.css">
+</head>
+
+<style> .banner {background-image: url(static/assets/images/3.jpg);} </style>
+
+<body>
+  <!-- ======================header started====================== -->
+  <header>
+    <div class="my-nav">
+      <div class="container">
+        <div class="row">
+          <div class="nav-items">
+            {% for log in logo %}
+            <div class="logo">
+              <img src="{{ log.image.url }}">
+            </div>
+            {% endfor %}
+            <div class="menu-toggle">
+              <div class="menu-hamburger"></div>
+            </div>
+            <div class="menu-items">
+              <div class="menu">
+                <ul>
+                  <li><a href="{% url 'dashboard' %}">Home</a></li>
+                  <li><a href="about-us.html">About Us</a></li>
+                  <li><a href="services.html">Services</a></li>
+                  <li><a href="blog.html">Blog</a></li>
+                  <li><a href="contact-us.html">Contact Us</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======================Main started====================== -->
+{% block content %}{% endblock %}
+  <!-- =====================>>>>>Footer Started>>>>>======================== -->
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+          <div class="footer-content">
+            <h2>SMART CHARITABLES</h2>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime adipisci veniam
+              voluptatum voluptatem sed ex error beatae, asperiores dignissimos?</p>
+            <ul>
+              <li><i class="fab fa-facebook-f"></i></li>
+              <li><i class="fab fa-twitter"></i></li>
+              <li><i class="fab fa-google"></i></li>
+              <li><i class="fab fa-skype"></i></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+          <div class="footer-content">
+            <h2>Quick Links</h2>
+            <ol>
+              <li><a href="#"><i class="fal fa-angle-double-right"></i>Home</a></li>
+              <li><a href="#"><i class="fal fa-angle-double-right"></i>About Us</a></li>
+              <li><a href="#"><i class="fal fa-angle-double-right"></i>Services</a></li>
+              <li><a href="#"><i class="fal fa-angle-double-right"></i>Blog</a></li>
+              <li><a href="#"><i class="fal fa-angle-double-right"></i>Contact Us</a></li>
+            </ol>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+          <div class="footer-content">
+            <h2>Services</h2>
+            <ol>
+              <li><a href="#"><i class="fal fa-angle-double-right"></i>Home</a></li>
+              <li><a href="#"><i class="fal fa-angle-double-right"></i>About Us</a></li>
+              <li><a href="#"><i class="fal fa-angle-double-right"></i>Services</a></li>
+              <li><a href="#"><i class="fal fa-angle-double-right"></i>Blog</a></li>
+              <li><a href="#"><i class="fal fa-angle-double-right"></i>Contact Us</a></li>
+            </ol>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+          <div class="footer-content">
+            <h2>News Letters</h2>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+            <div class="form-group">
+              <input class="form-control" role="" name="email" type="email" placeholder="Enter Your Email">
+              <i class="fal fa-paper-plane"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="copy-right">
+      <div class="container">
+        <div class="copy-right-card">
+         <p>2015 @ All Rights Reserved Designed and developed by<a
+             href="https://www.smarteyeapps.com">SmarteyeTechnologies</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+   <!-- JavaScript files -->
+    <!-- intl-tel-input JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput.min.js"></script>
+    <!-- Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <!-- jQuery (make sure it's included before Bootstrap.js) -->
+    <script src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
+    <!-- Bootstrap JS -->
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <!-- Custom JS -->
+    <script src="{% static 'assets/js/script.js' %}"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          const form = document.getElementById('registrationForm');
+          const phoneInput = document.getElementById('phone_number_id');
+          const phoneError = document.getElementById('phoneError');
+      
+          form.addEventListener('submit', function(event) {
+              // Validate phone number format
+              if (!isValidPhoneNumber(phoneInput.value)) {
+                  phoneError.textContent = 'Please enter a valid phone number starting with country code.';
+                  event.preventDefault(); // Prevent form submission
+              }
+          });
+      
+          function isValidPhoneNumber(phoneNumber) {
+              // Regular expression to validate phone number starting with country code
+              const phoneRegex = /^\+[1-9]\d{1,14}$/;
+              return phoneRegex.test(phoneNumber);
+          }
+      });
+      </script>
+</body>
+</html>
