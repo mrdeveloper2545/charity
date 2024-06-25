@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import Logo,OnlineMember
-from django_countries import countries as django_countries
+from .forms import OnlineMemberForm
 
 # Create your views here.
 
@@ -13,23 +13,23 @@ def home(request):
 
 
 def dashboard(request):
-    return render(request,'dashboard.html')
+    logo=Logo.objects.all()
+    context = {
+        'logo':logo
+    }
+    return render(request,'dashboard.html',context)
 
 def add_online_member(request):
     logo=Logo.objects.all()
     if request.method == 'POST':
-        first_name=request.POST['first_name']
-        last_name=request.POST['last_name']
-        email=request.POST['email']
-        phone_number=request.POST['phone_number']
-        gender=request.POST.get('gender', 'NOT_SPECIFIED')
-        country_code=request.POST.get('country', '')
-        online=OnlineMember.objects.create(first_name=first_name,last_name=last_name,email=email,phone_number=phone_number,gender=gender,country=country_code)
-        online.save()
-        return redirect('dashboard')
+        form=OnlineMemberForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard')
+        else:
+            form=OnlineMemberForm()
     context={
         'logo':logo,
-        'gender_choices': OnlineMember.GENGER_CHOICES,
-        'country_choices':django_countries.countries
+        'form':OnlineMemberForm(),
     }
     return render(request, 'add_online_member.html', context)
