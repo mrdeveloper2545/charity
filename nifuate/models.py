@@ -1,6 +1,6 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
-from django_countries.fields import CountryField
+
 
 # Create your models here.
 
@@ -25,7 +25,7 @@ class OnlineMember(models.Model):
     email=models.EmailField()
     phone_number=PhoneNumberField() 
     gender=models.CharField(max_length=10,choices=GENGER_CHOICES,default='NOT_SPECIFIED')
-    country=CountryField(blank_label='(select country)')
+    
 
 
     def __str__(self):
