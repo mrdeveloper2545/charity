@@ -1,6 +1,5 @@
 from django.shortcuts import render,redirect
 from .models import Logo
-from django.utils import timezone
 import datetime
 
 
