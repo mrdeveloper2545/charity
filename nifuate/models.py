@@ -7,26 +7,10 @@ from phonenumber_field.modelfields import PhoneNumberField
 class Logo(models.Model):
     image=models.ImageField('upload_to=logo')
 
-
-class OnlineMember(models.Model):
-    MALE = 'M'
-    FEMALE = 'F'
-    OTHER = 'O'
-    NOT_SPECIFIED = 'N'    
-
-    GENGER_CHOICES = [
-   (MALE, 'Male'),
-   (FEMALE, 'Female'),
-   (OTHER, 'Other'),
-   (NOT_SPECIFIED, 'Not Specified'),    
-]
-    first_name=models.CharField(max_length=100)
-    last_name=models.CharField(max_length=100)
-    email=models.EmailField()
-    phone_number=PhoneNumberField() 
-    gender=models.CharField(max_length=10,choices=GENGER_CHOICES,default='NOT_SPECIFIED')
-    
-
-
-    def __str__(self):
-        return f"{self.first_name} {self.get_gender_display()} {self.country.name}"
+class Cause(models.Model):
+    event_name=models.CharField(max_length=200)
+    image=models.ImageField(upload_to='causes')
+    description=models.TextField(max_length=500)
+    target_amount=models.DecimalField(max_digits=6,decimal_places=2)
+    collected_amount=models.DecimalField(max_digits=6,decimal_places=2)
+    created_at=models.DateTimeField(auto_now_add=True)

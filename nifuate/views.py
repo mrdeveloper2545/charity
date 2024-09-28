@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import Logo
-import datetime
+from django.utils import timezone
 
 
 # Create your views here.
@@ -16,7 +16,7 @@ def home(request):
 
 def dashboard(request):
     logo=Logo.objects.all()
-    time=datetime.datetime.now()
+    time=timezone.now()
     context = {
         'logo':logo,
         'month':time.strftime('%B'),
