@@ -30,8 +30,6 @@ INSTALLED_APPS = [
     'nifuate',
     'phonenumber_field',
     'django_countries',
-    'crispy_forms',
-    'crispy_bootstrap5',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
